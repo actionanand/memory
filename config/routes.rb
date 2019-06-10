@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   
   root 'memories#index'
   resources :memories do
-    resources :comments  
+    resources :comments 
+    member do
+        put 'like', to: "memories#like"
+        put 'unlike', to: "memories#unlike"
+    end
   end
   
   resources :comments do

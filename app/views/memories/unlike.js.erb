@@ -1,0 +1,4 @@
+$("#unlike-<%= @memory.id %>").bind('ajax:success', function(){
+  $(this).replaceWith('<%= j render 'fav_link', memory: @memory %>');
+  $('.votes').find('.count').html("<%= j @memory.votes_for.size.to_s %>");
+});

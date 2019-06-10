@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to session.delete(:return_to), notice: 'Your comment was successfully posted!' }
       else
-        format.html { render :new }
+        format.html { redirect_to session.delete(:return_to), danger: 'Enter at least 3 characters' }
       end
     end
       

@@ -1,5 +1,5 @@
 class MemoriesController < ApplicationController
-  before_action :set_memory, only: [:show, :edit, :update, :destroy]
+  before_action :set_memory, only: [:show, :edit, :update, :destroy, :like, :unlike]
 
   # GET /memories
   # GET /memories.json
@@ -61,6 +61,25 @@ class MemoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def like
+    session[:return_to] ||= request.referer
+    @memory.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_to session.delete(:return_to) }
+      format.js
+    end
+  end
+ 
+  def unlike
+    session[:return_to] ||= request.referer
+    @memory.unliked_by current_user
+    respond_to do |format|
+      format.html { redirect_to session.delete(:return_to) }
+      format.js
+    end
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

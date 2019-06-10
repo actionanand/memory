@@ -17,7 +17,7 @@
       <tr>
         <td><%= memory.title %></td>
         <td><%= memory.body %></td>
-        <td><%= memory.user.email %></td>
+        <td><%= memory.user.email.split('@') [0].capitalize %></td>
         <td><%= link_to 'Show', memory %></td>
         <td><%= link_to 'Edit', edit_memory_path(memory) %></td>
         <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>

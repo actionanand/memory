@@ -9,12 +9,20 @@
   <strong>Body:</strong>
   <%= @memory.body %>
 </p>
+<div class="votes">
+  <% if current_user.liked? @memory %>
+    <%= render 'unfav_link', memory: @memory %>
+  <% else %>
+    <%= render 'fav_link', memory: @memory %>
+  <% end %>
+  <span class="count"><%= @memory.votes_for.size %></span>
+</div>
 
 <p>
   <small>Submitted <%= time_ago_in_words(@memory.created_at) %> ago</small>
   By
   <strong>
-  <%= @memory.user.email %>
+  <%= @memory.user.email.split('@') [0].capitalize %>
   </strong>
 </p>
 
