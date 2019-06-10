@@ -1,6 +1,6 @@
 class MemoriesController < ApplicationController
   before_action :set_memory, only: [:show, :edit, :update, :destroy, :like, :unlike]
-
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   # GET /memories
   # GET /memories.json
   def index
@@ -86,7 +86,14 @@ class MemoriesController < ApplicationController
     def set_memory
       @memory = Memory.find(params[:id])
     end
-
+    
+    def require_same_user
+      if current_user != @memory.user
+        flash[:warning] = "You can edit or delete your own articles only"
+        redirect_to root_path
+      end
+    end
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def memory_params
       params.require(:memory).permit(:title, :body)

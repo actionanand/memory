@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :find_commentable
+  # before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def new
     @comment = Comment.new
@@ -25,6 +26,13 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body)
   end
+  
+  # def require_same_user
+  #   if current_user != @comment.user
+  #     flash[:warning] = "You can edit or delete your own Comments only"
+  #     redirect_to root_path
+  #   end
+  # end
   
   def find_commentable
     @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
