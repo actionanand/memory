@@ -4,5 +4,6 @@ class Memory < ApplicationRecord
   validates :user_id, presence: true
   validates :title, length: { minimum: 3, maximum: 30 }
   validates :body, length: { minimum: 3, maximum: 1000 }
+  default_scope -> {order(updated_at: :desc)}
   acts_as_votable
 end
