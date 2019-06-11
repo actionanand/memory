@@ -1,0 +1,12 @@
+<div class='col-md-12'>
+  <div class='row'>
+    <%= form_for [obj, Comment.new] do |f| %>
+      <div class="control-label col-md-10">
+        <%= f.text_area :body, placeholder: "Add your comment"  %>
+      </div>
+      <div class="col-sm-offset-2 col-md-10">
+        <%= f.submit "Add Comment"  %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,39 +1,37 @@
-  <strong>Title:</strong>
-  <%= @memory.title %>
-</p>
+<h2 align="center"><%=@memory.title.capitalize%></h2>
 
-<p>
-  <strong>Body:</strong>
-  <%= simple_format(@memory.body) %>
-</p>
-<div class="votes">
-  <% if current_user.liked? @memory %>
-    <%= render 'unfav_link', memory: @memory %>
-  <% else %>
-    <%= render 'fav_link', memory: @memory %>
-  <% end %>
-  <span class="count"><%= @memory.votes_for.size %></span>
+<div class="well col-xs-8 col-xs-offset-2">
+  <div class="row center">
+    <div class="col-md-4 col-md-offset-4">
+      <%= simple_format(@memory.body) %>
+    </div>
+    
+    <div class="col-md-12">
+      <strong><%= @memory.user.email.split('@') [0].capitalize %></strong>
+      Created: <%= time_ago_in_words(@memory.created_at) %> ago and recently updated this memory : <%= time_ago_in_words(@memory.updated_at) %> ago!
+    </div>
+    
+    <div class="col-md-12 votes">
+    <% if current_user.liked? @memory %>
+        <%= render 'unfav_link', memory: @memory %>
+      <% else %>
+        <%= render 'fav_link', memory: @memory %>
+      <% end %>
+      <span class="count"><%= @memory.votes_for.size %></span>
+    </div>  
+    <div class="col-md-12">
+    <% if current_user == @memory.user %>
+      <%= link_to 'Edit', edit_memory_path(@memory) %> |
+    <%end%>
+    <%= link_to 'Back', memories_path %>
+    </div>
+  </div>
 </div>
-
-<p>
-  <small>Submitted <%= time_ago_in_words(@memory.created_at) %> ago</small>
-  By
-  <strong>
-  <%= @memory.user.email.split('@') [0].capitalize %>
-  </strong>
-</p>
-<% if current_user == @memory.user %>
-  <%= link_to 'Edit', edit_memory_path(@memory) %> |
-<%end%>
-<%= link_to 'Back', memories_path %>
-
-<h3>Comments</h3>
-
-<%= form_for [@memory, Comment.new] do |f| %>
-<%= f.text_area :body, placeholder: "Add a comment" %><br/>
-<%= f.submit "Add Comment" %>
-<% end %>
-
-<ul>
-  <%= render(partial: 'comments/comment', collection: @memory.comments) %>
-</ul>
+<div class="col-md-8 col-md-offset-2">
+  <div class="row">
+    <h3 id="cmt-count"><%=pluralize(@memory.comments.count, "Comment")%> </h3>
+      <div class="show-it" style="display: none;">
+        <%= render 'comments/comments', obj: @memory%>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<%= render 'comments/form', obj: obj %>
+<div class="row">
+  <%= render(partial: 'comments/comment', collection: obj.comments) %>
+</div>
