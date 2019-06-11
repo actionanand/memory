@@ -47,9 +47,11 @@ class MemoriesController < ApplicationController
       if @memory.update(memory_params)
         format.html { redirect_to @memory, notice: 'Memory was successfully updated.' }
         format.json { render :show, status: :ok, location: @memory }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @memory.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

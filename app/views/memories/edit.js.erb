@@ -1,0 +1,6 @@
+$('.edit-data').bind('ajax:success', function() {
+  $(this).closest("div").hide();
+  $('#new-mem a').hide();
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  $('#edit-mem').html("<%= j render 'form', memory: @memory %>");
+});

@@ -4,7 +4,7 @@
 
 <p>
   <strong>Body:</strong>
-  <%= @memory.body %>
+  <%= simple_format(@memory.body) %>
 </p>
 <div class="votes">
   <% if current_user.liked? @memory %>
