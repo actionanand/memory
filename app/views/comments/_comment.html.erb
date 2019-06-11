@@ -1,14 +1,5 @@
-<div class="well col-md-10">
-  <p><%= comment.body %></p>
-  <p>
-    <small>
-      Created: <%= time_ago_in_words(comment.created_at) %>
-      ago by <%= comment.user.email.split('@') [0].capitalize %>
-    </small>
-  </p>
-</div>
-
-<%= render 'comments/form', obj:comment%>
+<%= render 'comments/add_comment', comment: comment%>
+<%= render 'comments/form', obj: comment%>
 
 <div class="row col-md-11 col-md-offset-1">
   <%= render partial: 'comments/comment', collection: comment.comments %>

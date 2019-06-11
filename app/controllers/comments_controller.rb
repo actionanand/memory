@@ -14,8 +14,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to session.delete(:return_to), notice: 'Your comment was successfully posted!' }
+        format.js
       else
-        format.html { redirect_to session.delete(:return_to), danger: 'Enter at least 3 characters' }
+        format.html { redirect_to session.delete(:return_to), danger: 'Enter at least 1 characters' }
+        format.js
       end
     end
       

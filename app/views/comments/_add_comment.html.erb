@@ -1,0 +1,9 @@
+<div class="well col-md-10">
+  <p><%= comment.body %></p>
+  <p>
+    <small>
+      Created: <%= time_ago_in_words(comment.created_at) %>
+      ago by <%= comment.user.email.split('@') [0].capitalize %>
+    </small>
+  </p>
+</div>

@@ -1,8 +1,8 @@
 <div class='col-md-12'>
   <div class='row'>
-    <%= form_for [obj, Comment.new] do |f| %>
+    <%= form_for [obj, Comment.new], remote: true do |f| %>
       <div class="control-label col-md-10">
-        <%= f.text_area :body, placeholder: "Add your comment"  %>
+        <%= f.text_area :body, placeholder: "Add your comment" , id: "clr" %>
       </div>
       <div class="col-sm-offset-2 col-md-10">
         <%= f.submit "Add Comment"  %>

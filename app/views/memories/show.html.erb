@@ -28,8 +28,8 @@
   </div>
 </div>
 <div class="col-md-8 col-md-offset-2">
-  <div class="row">
-    <h3 id="cmt-count"><%=pluralize(@memory.comments.count, "Comment")%> </h3>
+  <div class="row" id="no">
+    <h3 id="cmt-count"><a> <%=pluralize(@memory.comments.count, "Comment")%> </a></h3>
       <div class="show-it" style="display: none;">
         <%= render 'comments/comments', obj: @memory%>
       </div>
