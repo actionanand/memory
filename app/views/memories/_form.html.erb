@@ -1,7 +1,7 @@
 <div class='row'>
   <div class='col-md-12'>
 
-    <%= form_with(model: memory, local: true) do |form| %>
+    <%= form_with(model: memory) do |form| %>
       <% if memory.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(memory.errors.count, "error") %> prohibited this memory from being saved:</h2>

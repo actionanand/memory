@@ -1,9 +1,10 @@
 <h1 align="center">Listing all the Memories</h1>
 <div class="row">
   <div class="col-xs-8 col-xs-offset-5" id="new-mem">
-   <button class="btn btn-primary"><%= link_to 'New Memory', new_memory_path %></button>
+   <%= link_to 'New Memory', new_memory_path , remote: true %>
   </div>
 </div>
 
-<%= render 'memories', obj: @memories %>
-
+<div id="new-data">
+  <%= render 'memories', obj: @memories %>
+</div>

@@ -31,9 +31,11 @@ class MemoriesController < ApplicationController
       if @memory.save
         format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
         format.json { render :show, status: :created, location: @memory }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @memory.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
